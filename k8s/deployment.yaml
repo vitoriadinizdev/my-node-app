@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-node-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-node-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1       # cria 1 pod a mais durante atualização
+      maxUnavailable: 0 # nunca deixa pod indisponível
+  template:
+    metadata:
+      labels:
+        app: my-node-app
+    spec:
+      containers:
+      - name: my-node-app
+        image: ghcr.io/vitoriadinizdev/my-node-app:latest
+        ports:
+        - containerPort: 3000
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 10

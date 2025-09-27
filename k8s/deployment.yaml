@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: my-node-app
-        image: ghcr.io/vitoriadinizdev/my-node-app:b18261522c8a10853843af3e4c36b3d82815e6d7
+        image: ghcr.io/vitoriadinizdev/my-node-app:7bf7a25f386e9218494f6ebfdfd4cd32bd37497b
         ports:
         - containerPort: 3000
         readinessProbe:

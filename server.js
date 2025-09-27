@@ -3,7 +3,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-  res.send('🚀 Olá! Sua aplicação Node.js está rodando no Kubernetes com ArgoCD!! Atualizei !!');
+  res.send('🚀 Testando deploy com Argo CD');
 });
 
 app.listen(PORT, () => {

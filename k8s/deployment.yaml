@@ -10,8 +10,8 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 2
-      maxUnavailable: 1
+      maxSurge: 2       # cria 1 pod a mais durante atualização
+      maxUnavailable: 0 # nunca deixa pod indisponível
   template:
     metadata:
       labels:
@@ -19,10 +19,9 @@ spec:
     spec:
       containers:
       - name: my-node-app
-        image: ghcr.io/vitoriadinizdev/my-node-app:latest
+        image: ghcr.io/vitoriadinizdev/my-node-app:ce8ccdc87ade343b52e7eeb9e91528537d3276f3
         ports:
         - containerPort: 3000
-        imagePullPolicy: Always  # força pull da imagem mais recente
         readinessProbe:
           httpGet:
             path: /

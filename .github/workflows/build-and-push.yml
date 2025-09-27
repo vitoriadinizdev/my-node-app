@@ -21,6 +21,8 @@ jobs:
       # 1) Pega o código
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       # 2) (Opcional mas recomendado) habilita QEMU para builds multi-arch
       - name: Set up QEMU
@@ -56,12 +58,10 @@ jobs:
           sed -i "s|ghcr.io/vitoriadinizdev/my-node-app:.*|ghcr.io/vitoriadinizdev/my-node-app:${{ github.sha }}|g" k8s/deployment.yaml
 
       - name: Commit and push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add k8s/deployment.yaml
           git commit -m "Update image to ${{ github.sha }}" || echo "No changes to commit"
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:main
+          git push
 

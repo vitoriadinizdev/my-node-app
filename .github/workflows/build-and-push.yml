@@ -53,15 +53,3 @@ jobs:
           cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:cache,mode=max
           platforms: linux/amd64,linux/arm64
 
-      # - name: Update deployment.yaml image
-      #   run: |
-      #     sed -i "s|ghcr.io/vitoriadinizdev/my-node-app:.*|ghcr.io/vitoriadinizdev/my-node-app:${{ github.sha }}|g" k8s/deployment.yaml
-
-      # - name: Commit and push
-      #   run: |
-      #     git config user.name "GitHub Actions"
-      #     git config user.email "actions@github.com"
-      #     git add k8s/deployment.yaml
-      #     git commit -m "Update image to ${{ github.sha }}" || echo "No changes to commit"
-      #     git push
-

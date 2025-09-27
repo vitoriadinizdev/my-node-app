@@ -3,14 +3,14 @@ kind: Deployment
 metadata:
   name: my-node-app
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: my-node-app
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 2       # cria 1 pod a mais durante atualização
+      maxSurge: 3       # cria 1 pod a mais durante atualização
       maxUnavailable: 0 # nunca deixa pod indisponível
   template:
     metadata:

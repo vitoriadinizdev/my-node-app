@@ -3,7 +3,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-  res.send('🚀 Testando deploy com Argo CD');
+  res.send('🚀 Testando deploy com ArgoCD !! ');
 });
 
 app.listen(PORT, () => {

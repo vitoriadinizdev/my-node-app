@@ -54,6 +54,7 @@ jobs:
       - name: Update deployment.yaml image
         run: |
           sed -i "s|ghcr.io/vitoriadinizdev/my-node-app:.*|ghcr.io/vitoriadinizdev/my-node-app:${{ github.sha }}|g" k8s/deployment.yaml
+
       - name: Commit and push
         run: |
           git config user.name "GitHub Actions"

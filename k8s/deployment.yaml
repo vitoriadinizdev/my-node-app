@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: my-node-app
-  annotations:
-    argocd-image-updater.argoproj.io/image-list: my-node-app=ghcr.io/vitoriadinizdev/my-node-app
 spec:
   replicas: 2
   selector:
@@ -12,8 +10,8 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 1       # cria 1 pod a mais durante atualização
-      maxUnavailable: 0 # nunca deixa pod indisponível
+      maxSurge: 1
+      maxUnavailable: 0
   template:
     metadata:
       labels:
@@ -21,9 +19,10 @@ spec:
     spec:
       containers:
       - name: my-node-app
-        image: ghcr.io/vitoriadinizdev/my-node-app:latest
+        image: ghcr.io/vitoriadinizdev/my-node-app:bb77bd0c66ee3e82196f97e1a79535f99f85e0c5
         ports:
         - containerPort: 3000
+        imagePullPolicy: Always  # força pull da imagem mais recente
         readinessProbe:
           httpGet:
             path: /

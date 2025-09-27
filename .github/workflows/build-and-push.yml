@@ -17,7 +17,7 @@ jobs:
           docker build -t ghcr.io/vitoriadinizdev/my-node-app:${{ github.sha }} .
           docker push ghcr.io/vitoriadinizdev/my-node-app:${{ github.sha }}
 
-      - name: Update deployment.yaml
+      - name: Update deployment.yaml1
         run: |
           sed -i "s|ghcr.io/vitoriadinizdev/my-node-app:.*|ghcr.io/vitoriadinizdev/my-node-app:${{ github.sha }}|g" k8s-repo/k8s/deployment.yaml
 
